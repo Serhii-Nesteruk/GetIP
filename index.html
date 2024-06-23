@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your IP Address</title>
+</head>
+<body>
+  <h1>Your IP Address</h1>
+  <p id="ip">Fetching your IP...</p>
+  <script>
+    async function fetchIP() {
+      try {
+        const response = await fetch('/api/ip');
+        const data = await response.json();
+        document.getElementById('ip').textContent = `Your IP Address: ${data.ip}`;
+      } catch (error) {
+        document.getElementById('ip').textContent = 'Error fetching IP';
+        console.error('Error fetching IP:', error);
+      }
+    }
+
+    fetchIP();
+  </script>
+</body>
+</html>
